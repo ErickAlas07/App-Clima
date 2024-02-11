@@ -4,7 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
-public class NuevoUsuario {
+public class NuevoUsuarioDto {
 
     private String username;
     private String password;

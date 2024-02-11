@@ -19,7 +19,7 @@ public class Registros implements Serializable {
 
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
-    private Usuario user;
+    private Usuario usuario;
 
     @Column()
     private String consulta;

@@ -8,7 +8,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AireContaminado implements Serializable {
+public class AireContaminadoDto implements Serializable {
 
     private List<DatosAire> list;
 
