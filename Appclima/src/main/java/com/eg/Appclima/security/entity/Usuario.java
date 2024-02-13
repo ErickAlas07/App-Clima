@@ -20,7 +20,7 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nombre", unique = true)
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(nullable = false)

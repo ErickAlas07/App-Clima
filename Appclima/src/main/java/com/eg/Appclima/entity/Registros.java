@@ -6,7 +6,7 @@ import java.io.Serializable;
 import lombok.*;
 
 @Entity
-@Table(name = "registros")
+@Table(name = "registro")
 @Getter
 @Setter
 @NoArgsConstructor

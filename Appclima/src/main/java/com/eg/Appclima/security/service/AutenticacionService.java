@@ -32,7 +32,7 @@ public class AutenticacionService {
 
     public Usuario registrar(NuevoUsuarioDto nuevoUsuario) {
 
-        Optional<Rol> rol = rolRepository.findByRolNombre(RolNombre.USER);
+        Optional<Rol> rol = rolRepository.findByRolNombre(RolNombre.ADMIN);
 
         if (rol.isEmpty()) {
             throw new RuntimeException("Rol no encontrado.");
