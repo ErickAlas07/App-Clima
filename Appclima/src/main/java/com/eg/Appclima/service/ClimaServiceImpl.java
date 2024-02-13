@@ -65,7 +65,7 @@ public class ClimaServiceImpl implements ClimaService {
         return this.restTemplate.getForObject(urlAireContaminado(lat, lon, apiKey), AireContaminadoDto.class);
     }
 
-    public AireContaminadoDto getCoordsByCityName(String ciudad, String apiKey) {
+    public AireContaminadoDto getCoordenadas(String ciudad, String apiKey) {
 
         CoordenadasDto[] response = this.restTemplate.getForObject(urlGeo(ciudad, apiKey), CoordenadasDto[].class);
 

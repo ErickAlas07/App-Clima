@@ -4,7 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
-public class RepuestaLogin {
+public class RepuestaLoginDto {
     private String token;
-    private String expirado;
+    private long expirado;
 }

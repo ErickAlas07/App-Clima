@@ -14,6 +14,7 @@ public class RegistrosService {
 
     public void registrarConsulta(Usuario usuario, String consulta, String respuesta) {
         Registros queryRegistros = new Registros();
+        //queryRegistros.setId(Long.MIN_VALUE);
         queryRegistros.setUsuario(usuario);
         queryRegistros.setConsulta(consulta);
         queryRegistros.setRespuesta(respuesta);
