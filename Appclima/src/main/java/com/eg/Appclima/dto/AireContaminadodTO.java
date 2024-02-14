@@ -9,13 +9,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AireContaminadoDto implements Serializable {
-
+    
+    @JsonProperty("list")
     private List<DatosAire> list;
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-
     public static class DatosAire implements Serializable {
 
         @JsonProperty("main")

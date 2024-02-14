@@ -4,17 +4,20 @@ import com.eg.Appclima.dto.AireContaminadoDto;
 import com.eg.Appclima.dto.ClimaActualDto;
 import com.eg.Appclima.dto.CoordenadasDto;
 import com.eg.Appclima.dto.PronosticoDto;
+import com.eg.Appclima.security.config.AppConfig;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
+@Import(AppConfig.class)
 public class ClimaServiceImpl implements ClimaService {
 
     private static final String WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";

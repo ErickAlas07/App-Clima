@@ -8,6 +8,11 @@ import com.eg.Appclima.security.entity.Usuario;
 import com.eg.Appclima.security.service.UsuarioService;
 import com.eg.Appclima.service.ClimaServiceImpl;
 import com.eg.Appclima.service.RegistrosService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
@@ -35,6 +40,20 @@ public class ClimaController {
     @Autowired
     private RegistrosService registroService;
 
+    @Operation(summary = "Obtener el clima actual de una ciudad proporcionada. Datos necesarios: ciudad y api key.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Éxito en la operación.",
+                content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ClimaActualDto.class))}),
+        @ApiResponse(responseCode = "404", description = "No se encontraron datos para la ciudad.",
+                content = @Content),
+        @ApiResponse(responseCode = "403", description = "Usuario sin autorización.",
+                content = @Content),
+        @ApiResponse(responseCode = "429", description = "Número de peticiones excedidos.",
+                content = @Content),
+        @ApiResponse(responseCode = "500", description = "Error interno.",
+                content = @Content)})
     @Cacheable(value = "climaCache")
     @GetMapping(value = "/actual/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ClimaActualDto getClimaPorCiudad(@RequestParam(required = true) String ciudad, @RequestParam String apiKey, @AuthenticationPrincipal UserDetails userDetails) {
@@ -59,6 +78,20 @@ public class ClimaController {
         }
     }
 
+    @Operation(summary = "Obtener el pronóstico del clima de los siguientes 5 días de una ciudad proporcionada. Datos necesarios: ciudad y api key.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Éxito en la operación.",
+                content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PronosticoDto.class))}),
+        @ApiResponse(responseCode = "404", description = "No se encontraron datos de pronóstico para la ciudad.",
+                content = @Content),
+        @ApiResponse(responseCode = "403", description = "Usuario sin autorización.",
+                content = @Content),
+        @ApiResponse(responseCode = "429", description = "Número de peticiones excedidos.",
+                content = @Content),
+        @ApiResponse(responseCode = "500", description = "Error interno.",
+                content = @Content)})
     @Cacheable(value = "forecastCache")
     @GetMapping(value = "/forecast/", produces = MediaType.APPLICATION_JSON_VALUE)
     public PronosticoDto getPronosticoPorCiudad(@RequestParam(required = true) String ciudad, @RequestParam String apiKey, @AuthenticationPrincipal UserDetails userDetails) {
@@ -83,6 +116,20 @@ public class ClimaController {
         }
     }
 
+    @Operation(summary = "Obtener la contaminación del aire de una ciudad proporcionada. Datos necesarios: ciudad y api key.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Éxito en la operación.",
+                content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PronosticoDto.class))}),
+        @ApiResponse(responseCode = "404", description = "No se encontraron datos de aire para la ciudad proporcionada.",
+                content = @Content),
+        @ApiResponse(responseCode = "403", description = "Usuario sin autorización.",
+                content = @Content),
+        @ApiResponse(responseCode = "429", description = "Número de peticiones excedidos.",
+                content = @Content),
+        @ApiResponse(responseCode = "500", description = "Error interno.",
+                content = @Content)})
     @Cacheable(value = "aireContaminadoCache")
     @GetMapping(value = "/aire/", produces = MediaType.APPLICATION_JSON_VALUE)
     public AireContaminadoDto getAireContaminado(@RequestParam(required = true) String ciudad, @RequestParam String apiKey, @AuthenticationPrincipal UserDetails userDetails) {
