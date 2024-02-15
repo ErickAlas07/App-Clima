@@ -1,0 +1,40 @@
+version: '3.9'
+networks:
+  weather-network:
+    driver: bridge
+    
+services:
+    java-app:
+        container_name: java-app
+        image: appclima
+        build: .
+        ports:
+            - 8085:8085
+        environment:
+            - DATABASE_URL=jdbc:mysql://java-db:3306/clima
+            - DATABASE_USERNAME=root
+            - DATABASE_PASSWORD=
+            - JWT_SECRET_KEY=3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+            - JWT_EXPIRATION=43200000
+        networks:
+          - weather-network
+        depends_on:
+            - java-db
+            - redis
+    java-db:
+        container_name: java-db
+        image: mysql:latest
+        ports:
+            - 3307:3306
+        environment:
+            MYSQL_DATABASE: clima
+            MYSQL_ROOT_PASSWORD:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        networks:
+          - weather-network
+    redis:
+        image: redis:latest
+        ports:
+            - 6379:6379
+        networks:
+          - weather-network

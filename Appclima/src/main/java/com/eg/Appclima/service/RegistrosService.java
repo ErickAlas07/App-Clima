@@ -3,6 +3,7 @@ package com.eg.Appclima.service;
 import com.eg.Appclima.entity.Registros;
 import com.eg.Appclima.repository.RegistrosRepository;
 import com.eg.Appclima.security.entity.Usuario;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +21,5 @@ public class RegistrosService {
         queryRegistros.setRespuesta(respuesta);
         registrosRepository.save(queryRegistros);
     }
+
 }

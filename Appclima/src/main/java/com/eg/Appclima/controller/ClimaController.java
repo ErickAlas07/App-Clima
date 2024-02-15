@@ -4,6 +4,7 @@ import com.eg.Appclima.config.*;
 import com.eg.Appclima.dto.AireContaminadoDto;
 import com.eg.Appclima.dto.ClimaActualDto;
 import com.eg.Appclima.dto.PronosticoDto;
+import com.eg.Appclima.entity.Registros;
 import com.eg.Appclima.security.entity.Usuario;
 import com.eg.Appclima.security.service.UsuarioService;
 import com.eg.Appclima.service.ClimaServiceImpl;
@@ -13,12 +14,15 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import java.security.Principal;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -50,11 +54,11 @@ public class ClimaController {
                 content = @Content),
         @ApiResponse(responseCode = "403", description = "Usuario sin autorización.",
                 content = @Content),
-        @ApiResponse(responseCode = "429", description = "Número de peticiones excedidos.",
+        @ApiResponse(responseCode = "403", description = "Número de peticiones excedidos.",
                 content = @Content),
         @ApiResponse(responseCode = "500", description = "Error interno.",
                 content = @Content)})
-    @Cacheable(value = "climaCache")
+//    @Cacheable(value = "climaCache")
     @GetMapping(value = "/actual/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ClimaActualDto getClimaPorCiudad(@RequestParam(required = true) String ciudad, @RequestParam String apiKey, @AuthenticationPrincipal UserDetails userDetails) {
 
@@ -92,7 +96,7 @@ public class ClimaController {
                 content = @Content),
         @ApiResponse(responseCode = "500", description = "Error interno.",
                 content = @Content)})
-    @Cacheable(value = "forecastCache")
+    //@Cacheable(value = "forecastCache")
     @GetMapping(value = "/forecast/", produces = MediaType.APPLICATION_JSON_VALUE)
     public PronosticoDto getPronosticoPorCiudad(@RequestParam(required = true) String ciudad, @RequestParam String apiKey, @AuthenticationPrincipal UserDetails userDetails) {
 
@@ -130,7 +134,7 @@ public class ClimaController {
                 content = @Content),
         @ApiResponse(responseCode = "500", description = "Error interno.",
                 content = @Content)})
-    @Cacheable(value = "aireContaminadoCache")
+    //@Cacheable(value = "aireContaminadoCache")
     @GetMapping(value = "/aire/", produces = MediaType.APPLICATION_JSON_VALUE)
     public AireContaminadoDto getAireContaminado(@RequestParam(required = true) String ciudad, @RequestParam String apiKey, @AuthenticationPrincipal UserDetails userDetails) {
 
@@ -153,4 +157,5 @@ public class ClimaController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontraron datos del aire contaminado sobre la ciudad proporcionada");
         }
     }
+    
 }

@@ -19,6 +19,7 @@ public class LimiteReceptor implements HandlerInterceptor {
             return true;
         } else {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.sendError(403, "Agotó peticiones.");
             return false;
         }
     }

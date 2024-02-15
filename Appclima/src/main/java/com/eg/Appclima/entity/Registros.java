@@ -3,6 +3,8 @@ package com.eg.Appclima.entity;
 import com.eg.Appclima.security.entity.Usuario;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -14,7 +16,7 @@ import lombok.*;
 public class Registros implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(cascade = CascadeType.REMOVE)
@@ -25,4 +27,11 @@ public class Registros implements Serializable {
     private String consulta;
     @Column()
     private String respuesta;
+
+    public Registros(Usuario usuario, String consulta, String respuesta) {
+        this.usuario = usuario;
+        this.consulta = consulta;
+        this.respuesta = respuesta;
+    }
+
 }

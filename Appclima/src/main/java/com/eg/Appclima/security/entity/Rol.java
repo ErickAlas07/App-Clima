@@ -4,6 +4,8 @@ import com.eg.Appclima.security.enums.RolNombre;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Collection;
+import javax.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -30,4 +32,5 @@ public class Rol implements Serializable {
     public String getAuthority(){
         return rolNombre.name();
     }      
+
 }
