@@ -1,9 +1,9 @@
-##Api de Datos Meteorologicos.
+## Api de Datos Meteorologicos.
 
 API construida con tecnología Spring Boot, la cual obtiene y brinda los datos meteorologicos
 (de una ciudad proporcionada) desde OpenWeatherMap.
 
-#Requisistos necesarios 
+## Requisistos necesarios 
 
 Primeramente, asegúrate que dentro de tu sistemade se encuentren instalados los siguientes requisitos:
 
@@ -15,7 +15,7 @@ Primeramente, asegúrate que dentro de tu sistemade se encuentren instalados los
 - Instalar Postman, para realizar las peticiones de la API. 
    
   
-##Configuración del Entorno
+## Configuración del Entorno
 
 Seguir los siguientes pasos para la ejecución de la aplicacion:
 
@@ -48,7 +48,7 @@ docker-compose up
 > Asegúrate de estar en el directorio raíz del proyecto cuando ejecutes los anteriores comandos. Esto te garantizará facilidad a la hora de ejecutar la construcción y ejecución de la aplicación junto sus servicios. 
 
 
-#Endpoints disponibles en la aplicación Spring.
+## Endpoints disponibles en la aplicación Spring.
 
 - Registrar un usuario. Método: (POST)
   - Ruta: `/auth/registro`
@@ -72,16 +72,16 @@ docker-compose up
   }
   ```
 
-- #Obtener usuario actual. Método: (GET)
+- # Obtener usuario actual. Método: (GET)
   - Ruta: `/usuarios/me`
 
-- #Obtener el clima actual dado un nombre de ciudad. Método: (GET)
+- # Obtener el clima actual dado un nombre de ciudad. Método: (GET)
   - Ruta: `/clima/actual/`
 
-- #Obtener el pronostico del clima de próximos 5 dias, dando un nombre de ciudad. Método: (GET)
+- # Obtener el pronostico del clima de próximos 5 dias, dando un nombre de ciudad. Método: (GET)
   - Ruta: `/clima/forecast/`
  
-- #Acceder a datos de contaminacion del aire, dando un nombre de ciudad. Método: (GET)
+- # Acceder a datos de contaminacion del aire, dando un nombre de ciudad. Método: (GET)
   - Ruta: `/clima/aire/`
 
 [!IMPORTANT]
@@ -93,7 +93,7 @@ docker-compose up
 > [!IMPORTANT]
 > La aplicación está configurada para realizar 100 consultas por hora.
 
-##Documentacion
+## Documentacion
 
 Destacar que el programa viene con documentacion generada automáticamente por Swagger.
 - Sigue los siguientes pasos para tener el acceso:
@@ -107,7 +107,7 @@ Destacar que el programa viene con documentacion generada automáticamente por S
 2. Ir a la ruta `/swagger-ui/index.html`
 
 
-#Ejemplos de peticiones junto a sus respuestas.
+## Ejemplos de peticiones junto a sus respuestas.
 
 1. Solicitar el clima actual de una ciudad ciudad:
 
@@ -341,11 +341,11 @@ Destacar que el programa viene con documentacion generada automáticamente por S
   ```
 
 
-##Contacto 
+## Contacto 
 - Correo electrónico: erick777gal@gmail.com
 - Github: ErickAlas07
 
-##¡Mucha suerte!
+## ¡Mucha suerte!
 
   
 
